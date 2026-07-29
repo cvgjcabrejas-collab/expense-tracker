@@ -87,7 +87,10 @@ export default function DashboardPage() {
     const date = new Date();
     date.setDate(date.getDate() - (6 - i));
     const dateStr = date.toISOString().split('T')[0];
-    const dayExpenses = allExpenses?.filter((e) => e.date === dateStr) || [];
+    const dayExpenses = allExpenses?.filter((e) => {
+      const expenseDate = typeof e.date === 'string' ? e.date : new Date(e.date).toISOString().split('T')[0];
+      return expenseDate === dateStr;
+    }) || [];
     const amount = dayExpenses.reduce((sum, e) => sum + parseFloat(e.amount), 0);
     return {
       date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
