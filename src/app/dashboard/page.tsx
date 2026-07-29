@@ -102,12 +102,13 @@ export default function DashboardPage() {
     stats?.recentExpenses.reduce(
       (acc, expense) => {
         const existing = acc.find((c) => c.name === expense.category.name);
+        const amount = typeof expense.amount === 'string' ? parseFloat(expense.amount) : expense.amount;
         if (existing) {
-          existing.value += parseFloat(expense.amount);
+          existing.value += amount;
         } else {
           acc.push({
             name: expense.category.name,
-            value: parseFloat(expense.amount),
+            value: amount,
             color: expense.category.color,
           });
         }
