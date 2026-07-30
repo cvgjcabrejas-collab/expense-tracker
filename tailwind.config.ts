@@ -9,7 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#2563EB',
+        primary: '#A9BDD1', // Dusty Blue
+        secondary: '#7A8864', // Olive
+        accent: '#E5D5BC', // Champagne
+        brand: {
+          dusty: '#A9BDD1',
+          olive: '#7A8864',
+          stone: '#C8C0B5',
+          champagne: '#E5D5BC',
+          bisque: '#E5BCA9',
+          ivory: '#FAF7F2',
+        },
         success: '#16A34A',
         warning: '#F59E0B',
         danger: '#DC2626',
