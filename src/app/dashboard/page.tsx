@@ -150,7 +150,11 @@ export default function DashboardPage() {
               Add Expense
             </Button>
 
-            <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+            <button
+              onClick={() => router.push('/settings')}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              title="Settings"
+            >
               <Settings className="w-5 h-5 text-slate-600 dark:text-slate-400" />
             </button>
 
