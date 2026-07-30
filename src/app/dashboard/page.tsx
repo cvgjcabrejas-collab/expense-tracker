@@ -10,6 +10,7 @@ import {
   useDashboardStats,
   useAddExpense,
   useDeleteExpense,
+  useSettings,
 } from '@/hooks';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
@@ -38,6 +39,7 @@ export default function DashboardPage() {
   const { mutate: addExpense, isPending: isAddingExpense } = useAddExpense();
   const { mutate: deleteExpense } = useDeleteExpense();
   const { data: allExpenses } = useExpenses(undefined, !!user);
+  const { settings } = useSettings();
 
   // Redirect if not logged in
   useEffect(() => {
@@ -175,19 +177,19 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <SummaryCard
             label="Today"
-            value={stats ? formatCurrency(stats.todayTotal) : '$0.00'}
+            value={stats ? formatCurrency(stats.todayTotal, settings?.currency) : '₱0.00'}
           />
           <SummaryCard
             label="This Week"
-            value={stats ? formatCurrency(stats.weekTotal) : '$0.00'}
+            value={stats ? formatCurrency(stats.weekTotal, settings?.currency) : '₱0.00'}
           />
           <SummaryCard
             label="This Month"
-            value={stats ? formatCurrency(stats.monthTotal) : '$0.00'}
+            value={stats ? formatCurrency(stats.monthTotal, settings?.currency) : '₱0.00'}
           />
           <SummaryCard
             label="This Year"
-            value={stats ? formatCurrency(stats.yearTotal) : '$0.00'}
+            value={stats ? formatCurrency(stats.yearTotal, settings?.currency) : '₱0.00'}
           />
         </div>
 
